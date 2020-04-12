@@ -55,6 +55,12 @@ docker-build: test
 	@echo "updating kustomize image patch file for manager resource"
 	sed -i'' -e 's@image: .*@image: '"${IMG}"'@' ./config/default/manager_image_patch.yaml
 
+# Build the docker image (armv7)
+docker-build-armv7: 
+	docker buildx build . -t ${IMG} --platform linux/arm/v7 -f Dockerfile.armv7
+	@echo "updating kustomize image patch file for manager resource"
+	sed -i'' -e 's@image: .*@image: '"${IMG}"'@' ./config/default/manager_image_patch.yaml
+
 # Push the docker image
 docker-push:
 	docker push ${IMG}
