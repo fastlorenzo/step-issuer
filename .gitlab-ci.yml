@@ -1,6 +1,6 @@
 buildx:
   image: docker:19.03-git
-  stage: buildx
+  stage: .pre
   variables:
     GIT_STRATEGY: none
   artifacts:
