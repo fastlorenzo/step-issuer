@@ -16,7 +16,9 @@ COPY controllers/ controllers/
 COPY provisioners/ provisioners/
 
 # Build
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -a -o manager main.go
+RUN echo $TARGETPLATFORM | cut -d '/' -f 2 > /tmp/arch
+RUN cat /tmp/arch
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=`cat /tmp/arch` GOARM=7 GO111MODULE=on go build -a -o manager main.go
 
 # Use distroless as minimal base image to package the manager binary
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
