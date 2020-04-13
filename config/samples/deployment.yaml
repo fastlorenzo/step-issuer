@@ -315,7 +315,7 @@ spec:
         - --upstream=http://127.0.0.1:8080/
         - --logtostderr=true
         - --v=10
-        image: gcr.io/kubebuilder/kube-rbac-proxy:v0.4.0
+        image: fastlorenzo/kube-rbac-proxy:latest
         name: kube-rbac-proxy
         ports:
         - containerPort: 8443
@@ -325,7 +325,7 @@ spec:
         - --enable-leader-election
         command:
         - /manager
-        image: smallstep/step-issuer:0.1.0
+        image: fastlorenzo/step-issuer:latest
         name: manager
         resources:
           limits:
